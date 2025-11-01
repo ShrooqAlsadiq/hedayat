@@ -1,643 +1,527 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>هدايات - مؤسسة تعليمية لتعميق الوعي</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Cairo:wght@400;700;900&display=swap" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-    
-    <style>
-        /* =================== الألوان والخطوط =================== */
-        :root {
-            --color-dark-green: #37473C; /* لون المؤسسة الأساسي */
-            --color-beige: #F5EFE1; /* لون الخلفيات الفاتحة */
-            --color-light: #FFFFFF;
-            --font-family-arabic: 'Cairo', sans-serif;
-            --font-family-title: 'Amiri', serif;
-            --shadow-flat: 0 4px 15px rgba(0, 0, 0, 0.1);
-            --shadow-elevated: 0 15px 35px rgba(0, 0, 0, 0.25);
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>هدايات - مؤسسة تعليمية لتعميق الوعي</title>
 
-        body {
-            font-family: var(--font-family-arabic);
-            line-height: 1.8;
-            direction: rtl;
-            text-align: right;
-            background-color: var(--color-light);
-            color: #444;
-            overflow-x: hidden;
-        }
+  <!-- Fonts & Icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Cairo:wght@400;700;900&display=swap" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
 
-        /* الألوان الأساسية */
-        .bg-dark-green { background-color: var(--color-dark-green) !important; }
-        .bg-light-beige { background-color: var(--color-beige) !important; }
-        .text-dark-green { color: var(--color-dark-green) !important; }
-        .text-beige-light { color: var(--color-beige) !important; }
-                /* ✅ تصغير شعار الهيدر */
+  <!-- ====== متغيرات وأساسيات عامة ====== -->
+  <style>
+    :root {
+      --color-dark-green: #37473c;
+      --color-beige: #f5efe1;
+      --color-light: #ffffff;
+      --font-family-arabic: 'Cairo', sans-serif;
+      --font-family-title: 'Amiri', serif;
+      --shadow-flat: 0 4px 15px rgba(0, 0, 0, 0.1);
+      --shadow-elevated: 0 15px 35px rgba(0, 0, 0, 0.25);
+      --nav-h: 80px;
+    }
+    body {
+      font-family: var(--font-family-arabic);
+      line-height: 1.8;
+      direction: rtl;
+      text-align: right;
+      background-color: var(--color-light);
+      color: #444;
+      overflow-x: hidden;
+      margin: 0;
+      padding: 0;
+    }
+    .bg-dark-green { background-color: var(--color-dark-green) !important; }
+    .bg-light-beige { background-color: var(--color-beige) !important; }
+    .text-dark-green { color: var(--color-dark-green) !important; }
+    .text-beige-light { color: var(--color-beige) !important; }
+    [id] { scroll-margin-top: calc(var(--nav-h) + 16px); }
 
-        /* العناصر المشتركة */
-        .section-title {
-            font-size: 3rem;
-            font-weight: 900;
-            margin-bottom: 2rem;
-            font-family: var(--font-family-title);
-            display: inline-block;
-            color: var(--color-dark-green);
-        }
-        
-        .section-subtitle {
-            font-family: var(--font-family-title);
-            font-size: 1.5rem;
-            color: #888;
-            margin-bottom: 3rem;
-        }
-        
-        /* =================== 1. شريط التنقل (Navbar) & Hero Section =================== */
-        .navbar {
-            transition: background-color 0.4s ease, box-shadow 0.4s ease;
-            box-shadow: none; 
-            padding-top: 1.5rem;
-            padding-bottom: 1.5rem;
-        }
-        
-        .navbar.scrolled {
-            background-color: var(--color-dark-green);
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
-            padding-top: 0.75rem;
-            padding-bottom: 0.75rem;
-        }
+    /* ===== Hero (كما هو) ===== */
+    .hero-section {
+      height: 100dvh; min-height: 100dvh; max-height: 100dvh;
+      overflow: hidden; margin: 0; padding: 0;
+      display: flex; flex-direction: column; justify-content: center; align-items: center;
+      background-color: var(--color-beige); position: relative; z-index: 2;
+    }
+    .hero-section .container { padding: 0 1rem; }
+    .leaf-container { position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 1; }
+    .leaf { position: absolute; background: rgba(55, 71, 60, 0.1); border-radius: 0 100% 0 100%; transform-origin: center; filter: blur(0.5px); opacity: 1; top: -50px; animation: fall linear infinite; }
+    .leaf:nth-child(even) { background: rgba(198, 176, 148, 0.2); }
+    @keyframes fall { 0% { transform: translateY(0) translateX(0) rotate(0deg); } 50% { transform: translateY(50vh) translateX(15px) rotate(180deg); } 100% { transform: translateY(105vh) translateX(30px) rotate(360deg); } }
+    .leaf-1 { width: 80px; height: 25px; left: 10%; animation-duration: 10s; }
+    .leaf-2 { width: 60px; height: 20px; left: 25%; animation-duration: 7s; animation-delay: 1s; }
+    .leaf-3 { width: 70px; height: 22px; left: 40%; animation-duration: 9s; animation-delay: 2s; }
+    .leaf-4 { width: 65px; height: 18px; left: 55%; animation-duration: 8s; animation-delay: 3s; }
+    .leaf-5 { width: 75px; height: 24px; left: 70%; animation-duration: 12s; animation-delay: 4s; }
+    .leaf-6 { width: 55px; height: 16px; left: 85%; animation-duration: 6s; animation-delay: 5s; }
+    .leaf-7 { width: 68px; height: 20px; left: 5%; animation-duration: 11s; animation-delay: 6s; }
+    .leaf-8 { width: 62px; height: 18px; left: 35%; animation-duration: 7.5s; animation-delay: 7s; }
+    .leaf-9 { width: 58px; height: 17px; left: 65%; animation-duration: 9.5s; animation-delay: 8s; }
+    .leaf-10 { width: 72px; height: 21px; left: 95%; animation-duration: 6.5s; animation-delay: 9s; }
+    .leaf-11 { width: 66px; height: 19px; left: 20%; animation-duration: 10.5s; animation-delay: 10s; }
+    .leaf-12 { width: 64px; height: 18px; left: 80%; animation-duration: 8.5s; animation-delay: 11s; }
+    .hero-logo-img { width: min(85vw, 380px); height: auto; filter: drop-shadow(0 10px 30px rgba(55, 71, 60, 0.5)); animation: fadeInDown 1.5s ease-out; }
+    @keyframes fadeInDown { 0% { opacity: 0; transform: translateY(-50px); } 100% { opacity: 1; transform: translateY(0); } }
+    .btn-action { background-color: var(--color-dark-green); border-color: var(--color-dark-green); border-radius: 50px; padding: 15px 45px; font-weight: bold; color: var(--color-light); transition: all 0.3s ease; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3); }
+    .btn-action:hover { background-color: #556b60; border-color: #556b60; transform: scale(1.05); box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5) !important; }
 
-        .navbar-brand {
-            color: var(--color-beige) !important;
-            font-family: var(--font-family-title);
-            font-size: 1.8rem;
-            font-weight: 700;
-        }
+    /* ====== أنماط الأقسام بعد الهيرو ====== */
+    :root {
+      --ref-primary-color: #f5e6d3;
+      --ref-secondary-color: #5c6f4c;
+      --ref-warm-beige: #ebd5b3;
+      --ref-text-dark: #1a1a1a;
+      --ref-text-light: #666666;
+      --ref-white: #ffffff;
+      --ref-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      --ref-shadow-hover: 0 15px 40px rgba(0, 0, 0, 0.15);
+      --ref-transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .ref-section { padding: 6rem 1.5rem; max-width: 1200px; margin: 0 auto; }
+    .ref-section-header { text-align: center; margin-bottom: 3.25rem; }
+    .ref-section-title { font-family: var(--font-family-title); font-weight: 800; font-size: clamp(1.8rem, 4vw, 3rem); color: var(--ref-text-dark); position: relative; display: inline-block; }
+    .ref-section-title::after { content: ""; position: absolute; bottom: -10px; right: 50%; transform: translateX(50%); width: 90px; height: 4px; background: var(--ref-secondary-color); border-radius: 2px; }
+    .ref-section-subtitle { color: var(--ref-text-light); font-size: 1.1rem; margin-top: 1.25rem; }
+    .ref-card { background: var(--ref-white); border-radius: 20px; box-shadow: var(--ref-shadow); transition: var(--ref-transition); }
+    .ref-card:hover { transform: translateY(-8px); box-shadow: var(--ref-shadow-hover); }
+    .ref-grid-2, .ref-grid-3, .ref-grid-4 { display: grid; gap: 2rem; }
+    .ref-grid-2 { grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
+    .ref-grid-3 { grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
+    .ref-grid-4 { grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
+    .ref-stat { padding: 2.25rem; text-align: center; }
+    .ref-stat .icon { font-size: 2.2rem; color: var(--ref-secondary-color); margin-bottom: 1rem; }
+    .ref-stat .value { font-size: 2.4rem; font-weight: 800; color: var(--ref-secondary-color); }
+    .ref-stat .label { color: var(--ref-text-light); font-weight: 600; }
+    .ref-feature { padding: 2rem; }
+    .ref-feature .icon { width: 70px; height: 70px; border-radius: 16px; display: flex; align-items: center; justify-content: center; background: linear-gradient(135deg, var(--ref-primary-color), var(--ref-warm-beige)); color: var(--ref-secondary-color); font-size: 1.8rem; margin-bottom: 1rem; }
+    .ref-feature h3 { font-size: 1.25rem; font-weight: 800; color: var(--ref-text-dark); margin: 0.5rem 0 0.5rem; }
+    .ref-feature p { color: var(--ref-text-light); margin: 0; }
+    .ref-link-card { padding: 1.5rem; display: flex; align-items: center; justify-content: space-between; gap: 1rem; text-decoration: none; color: inherit; border: 2px solid rgba(0,0,0,0.06); }
+    .ref-link-card .left { display: flex; align-items: center; gap: 1rem; }
+    .ref-link-card .left .icon { width: 56px; height: 56px; border-radius: 14px; display: grid; place-items: center; background: linear-gradient(135deg, var(--ref-primary-color), var(--ref-warm-beige)); color: var(--ref-secondary-color); font-size: 1.5rem; }
+    .ref-link-card .title { font-weight: 800; }
+    .ref-link-card:hover { border-color: var(--ref-secondary-color); }
+    .ref-footer { background: #1e1e1e; color: #eaeaea; padding: 3rem 1.5rem; }
+    .ref-footer a { color: #cfcfcf; text-decoration: none; }
+    .ref-footer a:hover { color: #fff; }
+    .ref-footer .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 2rem; max-width: 1200px; margin: 0 auto; }
+    .ref-footer .bottom { max-width: 1200px; margin: 1.5rem auto 0; padding-top: 1rem; border-top: 1px solid rgba(255,255,255,0.12); text-align: center; color: #bdbdbd; }
+    section:nth-of-type(odd).ref-wrap { background: var(--color-beige); }
+    section:nth-of-type(even).ref-wrap { background: var(--color-light); }
+    @media (max-width: 768px) { .ref-section { padding: 4.5rem 1rem; } }
 
-        .navbar .nav-link {
-            color: var(--color-beige) !important;
-            font-weight: 700;
-            transition: all 0.3s ease;
-            position: relative;
-        }
-        
-        .navbar .nav-link::after {
-            content: '';
-            display: block;
-            width: 0;
-            height: 3px;
-            background: var(--color-light);
-            transition: width 0.3s;
-            position: absolute;
-            bottom: -5px;
-            right: 0;
-        }
-        
-        .navbar .nav-link:hover::after {
-            width: 100%;
-        }
-        
-        /* ✅ تحكّم الشعار: مخفي في الأعلى – يظهر عند التمرير */
-        .navbar-brand img {
-            max-height: 90px; /* حجم الشعار داخل الهدر */
-            height: auto;
-            width: auto;
-            opacity: 0;                /* مخفي افتراضيًا */
-            transform: translateY(-6px);
-            transition: opacity .4s ease, transform .4s ease;
-        }
-        .navbar.scrolled .navbar-brand img {
-            opacity: 1;               /* يظهر بعد التمرير */
-            transform: translateY(0);
-        }
-        .hero-section {
-            min-height: 100vh;
-            padding-top: 150px;
-            background-color: var(--color-beige);
-            position: relative;
-            overflow: hidden; 
-            z-index: 2;
-        }
-        @media (max-width: 768px) {
-  .hero-section .btn-action {
-    margin-bottom: 80px; /* تقدر تعدل الرقم حسب المسافة اللي تبغاها */
-  }
+    /* ====== تواصل ====== */
+    .contact-container { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: start; }
+    .contact-form { background: var(--ref-white); padding: 2rem; border-radius: 20px; box-shadow: var(--ref-shadow); }
+    .form-group { margin-bottom: 1rem; }
+    .form-label { display: block; margin-bottom: 0.5rem; font-weight: 700; color: var(--ref-text-dark); }
+    .form-input, .form-textarea {
+      width: 100%; padding: 0.9rem 1rem; border: 2px solid #E0E0E0; border-radius: 10px;
+      font-size: 1rem; background: var(--color-beige); color: var(--ref-text-dark); transition: var(--ref-transition);
+    }
+    .form-input:focus, .form-textarea:focus { outline: none; border-color: var(--ref-secondary-color); background: var(--ref-white); }
+    .form-textarea { min-height: 150px; resize: vertical; }
+    .contact-info { display: flex; flex-direction: column; gap: 1.25rem; }
+    .contact-item {
+      background: var(--ref-white); padding: 1.5rem; border-radius: 16px; box-shadow: var(--ref-shadow);
+      display: flex; align-items: center; gap: 1rem; transition: var(--ref-transition);
+    }
+    .contact-item:hover { transform: translateY(-4px); box-shadow: var(--ref-shadow-hover); }
+    .contact-icon {
+      width: 56px; height: 56px; border-radius: 14px; display: grid; place-items: center;
+      background: linear-gradient(135deg, var(--ref-primary-color), var(--ref-warm-beige));
+      color: var(--ref-secondary-color); font-size: 1.3rem;
+    }
+    .contact-details h3 { font-size: 1.05rem; margin: 0 0 0.25rem; color: var(--ref-text-dark); }
+    .contact-details p { color: var(--ref-text-light); margin: 0; }
+    @media (max-width: 992px) { .contact-container { grid-template-columns: 1fr; } }
+
+    /* ====== الهيدر الجديد (متجاوب) ====== */
+    .hdr.navbar{
+      background-color:#fff;
+      box-shadow:none;
+      transition:background-color .3s ease, box-shadow .3s ease, padding .3s ease;
+      padding-block:.9rem;
+    }
+    .hdr.scrolled{ box-shadow:0 4px 12px rgba(0,0,0,.08); }
+
+    .hdr .navbar-brand img{
+      max-height:90px; height:auto; width:auto; display:block;
+    }
+
+    .nav-rtl{ display:flex; align-items:center; }
+    .nav-rtl .nav-link{
+      color:#37473c !important; font-weight:700; position:relative; padding-inline:.6rem;
+    }
+    .nav-rtl .nav-link::after{
+      content:""; position:absolute; bottom:-6px; inset-inline-end:0; height:3px; width:0; background:#37473c; transition:width .25s;
+    }
+    .nav-rtl .nav-link:hover::after, .nav-rtl .nav-link:focus::after{ width:100%; }
+
+    .navbar-toggler{ border-color:rgba(0,0,0,.2); }
+    .navbar-toggler:focus{ box-shadow:0 0 0 .2rem rgba(55,71,60,.25); }
+    .navbar-toggler-icon{
+      background-image:url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(55,71,60,1)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+    }
+
+    .whatsapp-btn{
+      width:48px; height:48px; border-radius:50%;
+      background:#25D366; color:#fff !important;
+      display:inline-flex; align-items:center; justify-content:center;
+      font-size:1.25rem; text-decoration:none;
+      box-shadow:0 6px 16px rgba(37,211,102,.35);
+      transition:transform .2s, box-shadow .2s, background-color .2s;
+    }
+    .whatsapp-btn:hover{ background:#1ebe57; transform:translateY(-2px); box-shadow:0 10px 24px rgba(37,211,102,.45); }
+    .whatsapp-btn:focus{ outline:none; box-shadow:0 0 0 4px rgba(37,211,102,.25); }
+
+    @media (min-width: 992px){
+      .hdr .navbar-brand{ order:1; }
+      .hdr #navMain{ order:2; }
+      .hdr .navbar-toggler{ order:4; } /* يختفي في الكبير */
+    }
+    @media (max-width: 991.98px){
+      .hdr .navbar-collapse{
+        background:#fff; border-radius:12px; box-shadow:0 10px 30px rgba(0,0,0,.08);
+        padding:.75rem; margin-top:.75rem;
+      }
+      .nav-rtl .nav-link{ padding:.5rem .75rem; }
+    }
+    /* ====== Footer ====== */
+.ref-footer {
+  background-color: #37473c;
+ /* الأخضر الغامق من الصورة */
+  color: #f5f5f5;
+  padding: 3rem 1.5rem;
+}
+.ref-footer a { color: #e8e8e8; text-decoration: none; }
+.ref-footer a:hover { color: #ffffff; }
+.ref-footer .grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 2rem; max-width: 1200px; margin: 0 auto;
+}
+.ref-footer .bottom {
+  max-width: 1200px; margin: 1.5rem auto 0;
+  padding-top: 1rem; text-align: center; color: #e0e0e0;
+  border-top: 1px solid rgba(255,255,255,0.2);
 }
 
-        .hero-logo-img {
-            max-width: 400px; 
-            width: 100%;
-            height: auto;
-            filter: drop-shadow(0 10px 30px rgba(55, 71, 60, 0.5));
-            animation: fadeInDown 1.5s ease-out; 
-        }
-        
-        @keyframes fadeInDown {
-            0% { opacity: 0; transform: translateY(-50px); }
-            100% { opacity: 1; transform: translateY(0); }
-        }
-
-        .btn-action {
-            background-color: var(--color-dark-green);
-            border-color: var(--color-dark-green);
-            border-radius: 50px;
-            padding: 15px 45px;
-            font-weight: bold;
-            color: var(--color-light);
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
-        }
-
-        .btn-action:hover {
-            background-color: #556B60;
-            border-color: #556B60;
-            transform: scale(1.05);
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5) !important;
-        }
-        
-        .leaf-container { position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 1; }
-        .leaf { position: absolute; background: rgba(55, 71, 60, 0.1); border-radius: 0 100% 0 100%; transform-origin: center; filter: blur(0.5px); opacity: 1; top: -50px; animation: fall linear infinite; }
-        .leaf:nth-child(even) { background: rgba(198, 176, 148, 0.2); }
-        @keyframes fall {
-            0% { transform: translateY(0) translateX(0) rotate(0deg); }
-            50% { transform: translateY(50vh) translateX(15px) rotate(180deg); }
-            100% { transform: translateY(105vh) translateX(30px) rotate(360deg); }
-        }
-        .leaf-1 { width: 80px; height: 25px; left: 10%; animation-duration: 10s; animation-delay: 0s; }
-        .leaf-2 { width: 60px; height: 20px; left: 25%; animation-duration: 7s; animation-delay: 1s; }
-        .leaf-3 { width: 70px; height: 22px; left: 40%; animation-duration: 9s; animation-delay: 2s; }
-        .leaf-4 { width: 65px; height: 18px; left: 55%; animation-duration: 8s; animation-delay: 3s; }
-        .leaf-5 { width: 75px; height: 24px; left: 70%; animation-duration: 12s; animation-delay: 4s; }
-        .leaf-6 { width: 55px; height: 16px; left: 85%; animation-duration: 6s; animation-delay: 5s; }
-        .leaf-7 { width: 68px; height: 20px; left: 5%; animation-duration: 11s; animation-delay: 6s; }
-        .leaf-8 { width: 62px; height: 18px; left: 35%; animation-duration: 7.5s; animation-delay: 7s; }
-        .leaf-9 { width: 58px; height: 17px; left: 65%; animation-duration: 9.5s; animation-delay: 8s; }
-        .leaf-10 { width: 72px; height: 21px; left: 95%; animation-duration: 6.5s; animation-delay: 9s; }
-        .leaf-11 { width: 66px; height: 19px; left: 20%; animation-duration: 10.5s; animation-delay: 10s; }
-        .leaf-12 { width: 64px; height: 18px; left: 80%; animation-duration: 8.5s; animation-delay: 11s; }
-
-        /* =================== 2. قسم من نحن (About Section) =================== */
-        .about-section {
-            background-color: var(--color-dark-green);
-            color: var(--color-light);
-            padding: 8rem 0;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .about-section::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, rgba(255, 255, 255, 0.05) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.05) 50%, rgba(255, 255, 255, 0.05) 75%, transparent 75%, transparent);
-            background-size: 40px 40px;
-            opacity: 0.1;
-            z-index: 1;
-        }
-
-        .about-content-card {
-            background: var(--color-light);
-            color: var(--color-dark-green);
-            border-radius: 15px;
-            padding: 40px;
-            box-shadow: var(--shadow-elevated);
-            transform: translateY(0);
-            transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-            position: relative;
-            z-index: 5;
-            min-height: 400px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-        }
-        
-        .about-content-card:hover {
-            transform: translateY(-5px) scale(1.01);
-            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.3);
-        }
-        
-        /* تباعد للنسخة المطولة */
-        .about-text-long p {
-            margin-bottom: 25px;
-        }
-
-        /* =================== 3. قسم الرؤية والرسالة (Vision & Mission) =================== */
-        .vision-mission-section .section-title {
-            color: var(--color-dark-green);
-        }
-        
-        .vision-mission-card {
-            background: linear-gradient(145deg, var(--color-light) 0%, var(--color-beige) 100%);
-            border: none;
-            border-radius: 12px;
-            box-shadow: var(--shadow-flat);
-            transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-            transform-style: preserve-3d;
-            perspective: 1000px;
-            padding: 40px;
-            position: relative;
-            overflow: hidden;
-            border-bottom: 5px solid var(--color-dark-green);
-        }
-
-        .vision-mission-card:hover {
-            transform: translateY(-8px) rotateY(1deg);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2); 
-        }
-
-        .vm-icon-wrapper {
-            background-color: var(--color-dark-green);
-            color: var(--color-beige);
-            width: 80px;
-            height: 80px;
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-size: 2.5rem; 
-            margin-bottom: 25px;
-            transition: all 0.4s;
-            box-shadow: 0 0 0 5px rgba(55, 71, 60, 0.1);
-        }
-        
-        .vision-mission-card:hover .vm-icon-wrapper {
-            background-color: var(--color-beige);
-            color: var(--color-dark-green);
-            transform: scale(1.1);
-        }
-        
-        .vision-mission-card h5 {
-            font-family: var(--font-family-title);
-            font-weight: 700;
-            font-size: 1.8rem;
-        }
-
-        /* =================== 4. قسم الأهداف والقيم (Goals & Values) =================== */
-        .goals-section {
-             background-color: var(--color-light);
-             padding: 8rem 0;
-        }
-
-        /* نمط رقائق القيم (Values Chips) */
-        .value-item {
-            background-color: var(--color-beige);
-            color: var(--color-dark-green);
-            border-radius: 50px;
-            font-weight: 700;
-            padding: 12px 25px;
-            margin: 5px;
-            transition: all 0.4s ease;
-            cursor: pointer;
-            border: 2px solid var(--color-beige);
-        }
-        
-        .value-item i {
-            font-size: 1.1rem;
-            margin-left: 8px;
-            color: var(--color-dark-green);
-            transition: color 0.4s;
-        }
-
-        .value-item:hover {
-            background-color: var(--color-dark-green);
-            color: var(--color-light);
-            transform: translateY(-5px) scale(1.05);
-            box-shadow: var(--shadow-elevated);
-            border-color: var(--color-light);
-        }
-        
-        .value-item:hover i {
-            color: var(--color-light);
-        }
-        
-        /* تصميم المخطط الزمني (Goals Timeline) */
-        .timeline-item {
-            display: flex;
-            position: relative;
-            margin-bottom: 30px;
-        }
-        
-        .timeline-badge {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            background-color: var(--color-dark-green);
-            color: var(--color-light);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-size: 1.5rem;
-            z-index: 10;
-            flex-shrink: 0;
-            box-shadow: var(--shadow-flat);
-            transition: all 0.3s;
-        }
-        
-        .timeline-item:hover .timeline-badge {
-            transform: scale(1.15) rotateZ(3deg);
-            background-color: var(--color-beige);
-            color: var(--color-dark-green);
-            box-shadow: 0 0 0 8px rgba(55, 71, 60, 0.2);
-        }
-
-        .timeline-panel {
-            flex-grow: 1;
-            padding: 15px 25px;
-            background: var(--color-beige);
-            border-radius: 8px;
-            margin-right: 15px;
-            box-shadow: var(--shadow-flat);
-            transition: all 0.3s;
-            border-right: 5px solid var(--color-dark-green);
-        }
-
-        .timeline-item:hover .timeline-panel {
-            background: var(--color-light);
-            transform: translateX(10px);
-        }
-        
-        .timeline-panel h5 {
-            font-family: var(--font-family-title);
-            color: var(--color-dark-green);
-            font-weight: 700;
-        }
-        
-        /* خط الاتصال العمودي (للمخطط الزمني) */
-        .timeline-container {
-            position: relative;
-        }
-        
-        .timeline-container::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            right: 25px; 
-            bottom: 0;
-            width: 4px;
-            background-color: var(--color-beige);
-            z-index: 5;
-        }
-
-        /* =================== 5. التذييل (Footer) =================== */
-        .footer-section {
-            background-color: var(--color-dark-green);
-        }
-        
-        .social-icons-footer a {
-            color: var(--color-beige);
-            transition: all 0.3s;
-            font-size: 1.5rem;
-        }
-
-        .social-icons-footer a:hover {
-            color: var(--color-light);
-            transform: scale(1.2) translateY(-2px);
-        }
-    </style>
+  </style>
 </head>
+
 <body>
-<nav class="navbar navbar-expand-lg fixed-top" data-bs-theme="dark">
-        <div class="container">
-            <a class="navbar-brand me-9" href="#home">
-                <img src="logo1.png" alt="شعار هدايات">
-            </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="#about">من نحن</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#vision">الرؤية والرسالة</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#goals">القيم والأهداف</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#contact">تواصل معنا</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
+  <!-- ====== Navbar (Responsive / RTL) ====== -->
+  <nav class="navbar navbar-expand-lg fixed-top hdr" data-bs-theme="light" aria-label="التنقل الرئيسي">
+    <div class="container align-items-center">
+      <!-- الشعار -->
+      <a class="navbar-brand order-1 d-flex align-items-center" href="#home">
+        <img src="logo2.png" alt="شعار هدايات" />
+        <span class="visually-hidden">عودة إلى الرئيسية</span>
+      </a>
 
-    <section id="home" class="hero-section text-center d-flex align-items-center justify-content-center">
-        <div class="leaf-container">
-            <div class="leaf leaf-1"></div>
-            <div class="leaf leaf-2"></div>
-            <div class="leaf leaf-3"></div>
-            <div class="leaf leaf-4"></div>
-            <div class="leaf leaf-5"></div>
-            <div class="leaf leaf-6"></div>
-            <div class="leaf leaf-7"></div>
-            <div class="leaf leaf-8"></div>
-            <div class="leaf leaf-9"></div>
-            <div class="leaf leaf-10"></div>
-            <div class="leaf leaf-11"></div>
-            <div class="leaf leaf-12"></div>
-        </div>
-        
-        <div class="container" style="z-index: 5;">
-            <div class="row justify-content-center">
-                <div class="col-lg-10">
-                    <img src="logo2.png" alt="شعار هدايات" class="hero-logo-img mb-5">
-                    <h1 class="display-5 fw-bold text-dark-green mb-4" style="font-family: var(--font-family-title);">
-                        منارة هدى لتعميق الوعي المجتمعي
-                    </h1>
-                    <p class="lead text-dark-green mb-5 px-lg-5">
-                        مؤسسة رائدة موثوقة متخصصة في تقديم معرفة أصيلة رافدة للقيم العليا للوطن، عبر برامج نوعية بخبرات مؤهلة وطرق ميسرة وجاذبة.
-                    </p>
-                    <a href="#about" class="btn btn-action btn-lg">ابدأ رحلة التعرف</a>
-                </div>
-            </div>
-        </div>
-    </section>
+      <!-- واتساب (ظاهر على الموبايل في الصف العلوي) -->
+      <a
+        class="whatsapp-btn order-2 d-flex d-lg-none"
+        href="https://wa.me/966596658710?text=%D9%85%D8%B1%D8%AD%D8%A8%D8%A7%D9%8B%20%D9%87%D8%AF%D8%A7%D9%8A%D8%A7%D8%AA"
+        target="_blank" rel="noopener" aria-label="تواصل عبر واتساب" title="تواصل عبر واتساب">
+        <i class="bi bi-whatsapp"></i>
+      </a>
 
-    <section id="about" class="about-section">
-        <div class="container">
-             <div class="row justify-content-center">
-                <div class="col-lg-10 text-center">
-                    <h2 class="section-title text-beige-light mb-3">من نحن؟</h2>
-                    <p class="section-subtitle text-beige-light">
-                        المعارف الصحيحة لبناء وعي راسخ
-                    </p>
-                </div>
-            </div>
-            <div class="row justify-content-center">
-                <div class="col-lg-10">
-                    <div class="about-content-card">
-                        <div class="row">
-                            <div class="col-md-5 text-center d-flex flex-column justify-content-center border-start border-3 border-dark-green p-4 bg-light-beige rounded-2">
-                                <i class="bi bi-patch-check-fill text-dark-green display-4 mb-3"></i>
-                                <h3 class="text-dark-green fw-bold" style="font-family: var(--font-family-title);">
-                                    مؤسسة تعليمية مسجلة في المركز الوطني لتنمية القطاع غير ربحي.
-                                </h3>
-                                <p class="text-dark-green fw-bold mt-3">
-                                    نجمع بين الأصالة العلمية والوسائل المعاصرة المؤثرة.
-                                </p>
-                            </div>
-                            <div class="col-md-7 p-4 about-text-long">
-                                <h4 class="text-dark-green fw-bold mb-4">رسالتنا في تعميق الوعي:</h4>
-                                <p class="mb-0">
-                                    تسعى هدايات لترسيخ المعارف الصحيحة وبناء وعي راسخ يحصن الفرد والمجتمع من الانحرافات. هذا يتم من خلال الجمع بين الأصالة العلمية والوسائل المعاصرة المؤثرة.
-                                </p>
-                                <p class="mb-0">
-                                    هدفنا الأساسي هو المساهمة في تعزيز ثوابت الهوية الوطنية والإسلامية للمجتمع.
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+      <!-- زر القائمة -->
+      <button class="navbar-toggler order-3" type="button" data-bs-toggle="collapse" data-bs-target="#navMain"
+        aria-controls="navMain" aria-expanded="false" aria-label="إظهار القائمة">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <!-- الروابط -->
+      <div class="collapse navbar-collapse order-4" id="navMain">
+        <ul class="navbar-nav nav-rtl mx-auto gap-lg-3">
+          <li class="nav-item"><a class="nav-link" href="#about">من نحن</a></li>
+          <li class="nav-item"><a class="nav-link" href="#vision">الرؤية والرسالة</a></li>
+          <li class="nav-item"><a class="nav-link" href="#goals">الأهداف و القيم</a></li>
+          <li class="nav-item"><a class="nav-link" href="#board">مجلس الإدارة</a></li>
+          <li class="nav-item"><a class="nav-link" href="#reports">التقارير</a></li>
+          <li class="nav-item"><a class="nav-link" href="#contact">تواصل معنا</a></li>
+        </ul>
+
+        <!-- واتساب على الديسكتوب (أقصى اليسار) -->
+        <div class="d-none d-lg-flex ms-lg-3">
+          <a
+            class="whatsapp-btn"
+            href="https://wa.me/966596658710?text=%D9%85%D8%B1%D8%AD%D8%A8%D8%A7%D9%8B%20%D9%87%D8%AF%D8%A7%D9%8A%D8%A7%D8%AA"
+            target="_blank" rel="noopener" aria-label="تواصل عبر واتساب" title="تواصل عبر واتساب">
+            <i class="bi bi-whatsapp"></i>
+          </a>
         </div>
-    </section>
+      </div>
+    </div>
+  </nav>
 
-    <section id="vision" class="vision-mission-section py-5 bg-light-beige">
-        <div class="container py-5">
-            <h2 class="section-title text-center mb-3">رؤيتنا ورسالتنا</h2>
-            <p class="section-subtitle text-center">الهدف الذي نسعى لتحقيقه والمنهج الذي نتبعه</p>
-            <div class="row g-5 justify-content-center">
-                <div class="col-lg-5 col-md-8">
-                    <div class="card vision-mission-card h-100 text-center">
-                        <div class="card-body">
-                            <div class="vm-icon-wrapper mx-auto">
-                                <i class="bi bi-award-fill"></i>
-                            </div>
-                            <h5 class="card-title text-dark-green mb-3">
-                                رؤيتنا
-                            </h5>
-                            <p class="card-text">
-                                مؤسسة رائدة موثوقة متخصصة في تقديم معرفة أصيلة رافدة للقيم العليا للوطن.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-5 col-md-8">
-                    <div class="card vision-mission-card h-100 text-center">
-                        <div class="card-body">
-                             <div class="vm-icon-wrapper mx-auto">
-                                <i class="bi bi-compass-fill"></i>
-                            </div>
-                            <h5 class="card-title text-dark-green mb-3">
-                                رسالتنا
-                            </h5>
-                            <p class="card-text">
-                                منارة هدى لتعميق الوعي المجتمعي ونشر المعارف الصحيحة من خلال برامج نوعية بخبرات مؤهلة وطرق ميسرة وجاذبة.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
+  <!-- ====== Hero ====== -->
+  <section id="home" class="hero-section text-center d-flex align-items-center justify-content-center">
+    <div class="leaf-container">
+      <div class="leaf leaf-1"></div><div class="leaf leaf-2"></div><div class="leaf leaf-3"></div><div class="leaf leaf-4"></div>
+      <div class="leaf leaf-5"></div><div class="leaf leaf-6"></div><div class="leaf leaf-7"></div><div class="leaf leaf-8"></div>
+      <div class="leaf leaf-9"></div><div class="leaf leaf-10"></div><div class="leaf leaf-11"></div><div class="leaf leaf-12"></div>
+    </div>
+    <div class="container" style="z-index: 5;">
+      <div class="row justify-content-center">
+        <div class="col-lg-10">
+          <img src="logo2.png" alt="شعار هدايات" class="hero-logo-img mb-5" />
+          <h1 class="display-5 fw-bold text-dark-green mb-4" style="font-family: var(--font-family-title);">منارة هدى لتعميق الوعي المجتمعي</h1>
+          <p class="lead text-dark-green mb-5 px-lg-5">مؤسسة رائدة موثوقة متخصصة في تقديم معرفة أصيلة رافدة للقيم العليا للوطن، عبر برامج نوعية بخبرات مؤهلة وطرق ميسرة وجاذبة.</p>
+          <a href="#about" class="btn btn-action btn-lg">ابدأ رحلة التعرف</a>
         </div>
-    </section>
+      </div>
+    </div>
+  </section>
 
-    <section id="goals" class="goals-section">
-        <div class="container py-5">
-            <h2 class="section-title text-center mb-3">قيمنا الجوهرية</h2>
-            <p class="section-subtitle text-center">المبادئ التي تقود عملنا</p>
-            
-            <div class="d-flex flex-wrap justify-content-center gap-3 mb-5 pb-5">
-                <div class="value-item"><i class="bi bi-star-fill"></i> الجودة</div>
-                <div class="value-item"><i class="bi bi-patch-check-fill"></i> المصداقية والشفافية</div>
-                <div class="value-item"><i class="bi bi-people-fill"></i> التعاون</div>
-                <div class="value-item"><i class="bi bi-lightbulb-fill"></i> الابتكار</div>
-                <div class="value-item"><i class="bi bi-arrow-repeat"></i> المرونة</div>
+  <!-- ====== About ====== -->
+  <section id="about" class="ref-wrap">
+    <div class="ref-section">
+      <div class="ref-section-header">
+        <h2 class="ref-section-title">من نحن؟</h2>
+        <p class="ref-section-subtitle">المعارف الصحيحة لبناء وعي راسخ</p>
+      </div>
+
+      <div class="mt-5 ref-card p-4 p-md-5">
+        <div class="row g-4 align-items-center">
+          <div class="col-md-5">
+            <div class="p-4 rounded-3" style="background: var(--color-beige);">
+              <div class="d-flex flex-column align-items-center text-center">
+                <i class="bi bi-patch-check-fill text-dark-green display-5 mb-3"></i>
+                <h3 class="text-dark-green fw-bold" style="font-family: var(--font-family-title);">مؤسسة تعليمية مسجلة</h3>
+                <p class="mb-0">نجمع بين الأصالة العلمية والوسائل المعاصرة المؤثرة.</p>
+              </div>
             </div>
-            
-            <h2 class="section-title text-center mt-5 mb-3">أهدافنا الاستراتيجية</h2>
-            <p class="section-subtitle text-center">خطواتنا نحو تحقيق الرؤية</p>
-            
-            <div class="row justify-content-center">
-                <div class="col-lg-8 timeline-container">
-                    
-                    <div class="timeline-item">
-                        <div class="timeline-badge">01</div>
-                        <div class="timeline-panel">
-                            <h5 class="mb-2">تحصين الجيل (الفتيات)</h5>
-                            <p class="mb-0">تمكين فتيات قادرات على تمييز المعارف الصحيحة من الزائفة.</p>
-                        </div>
-                    </div>
-                    
-                    <div class="timeline-item">
-                        <div class="timeline-badge">02</div>
-                        <div class="timeline-panel">
-                            <h5 class="mb-2">بناء الكفاءات التربوية</h5>
-                            <p class="mb-0">إعداد كفاءات تربوية قادرة على تعميق القناعات.</p>
-                        </div>
-                    </div>
-                    
-                    <div class="timeline-item">
-                        <div class="timeline-badge">03</div>
-                        <div class="timeline-panel">
-                            <h5 class="mb-2">مواكبة المستجدات</h5>
-                            <p class="mb-0">تمكين المعلمات من ربط المناهج بالمستجدات والنوازل المعاصرة.</p>
-                        </div>
-                    </div>
-                    
-                    <div class="timeline-item">
-                        <div class="timeline-badge">04</div>
-                        <div class="timeline-panel">
-                            <h5 class="mb-2">الاستدامة المالية</h5>
-                            <p class="mb-0">تحقيق الاكتفاء المالي.</p>
-                        </div>
-                    </div>
-                    
-                </div>
-            </div>
+          </div>
+          <div class="col-md-7">
+            <h4 class="mb-3" style="font-family: var(--font-family-title); color: var(--color-dark-green);">رسالتنا في تعميق الوعي</h4>
+            <p class="mb-3">نسعى لترسيخ المعارف الصحيحة وبناء وعي راسخ يحصّن الفرد والمجتمع من الانحرافات؛ وذلك عبر الجمع بين الأصالة العلمية والوسائل المعاصرة المؤثرة.</p>
+            <p class="mb-0">هدفنا المساهمة في تعزيز ثوابت الهوية الوطنية والإسلامية للمجتمع.</p>
+          </div>
         </div>
-    </section>
+      </div>
+    </div>
+  </section>
 
-    <footer id="contact" class="footer-section text-beige-light py-5">
-        <div class="container">
-            <div class="row justify-content-between align-items-center">
-                <div class="col-md-4 text-center text-md-start">
-                    <h3 class="navbar-brand mb-3 mb-md-0" style="font-family: var(--font-family-title);">هدايات</h3>
-                    <p class="mb-0">مؤسسة تعليمية مرخصة.</p>
-                </div>
-                
-                <div class="col-md-4 text-center text-md-center social-icons-footer mt-4 mt-md-0">
-                    <h5 class="text-beige-light mb-3">تواصل معنا</h5>
-                    <a href="#" class="me-4" title="Pinterest">
-                        <i class="bi bi-pinterest"></i>
-                    </a>
-                    <a href="tel:+" class="me-4" title="اتصال">
-                        <i class="bi bi-telephone-fill"></i>
-                    </a>
-                    <a href="mailto:info@hidayat.com" title="بريد إلكتروني">
-                        <i class="bi bi-envelope-fill"></i>
-                    </a>
-                </div>
-
-                <div class="col-md-4 text-center text-md-end mt-4 mt-md-0">
-                    <p class="mb-0 fs-6">&copy; <span id="year">2024</span> هدايات. جميع الحقوق محفوظة.</p>
-                </div>
-            </div>
+  <!-- ====== Vision & Mission ====== -->
+  <section id="vision" class="ref-wrap">
+    <div class="ref-section">
+      <div class="ref-section-header">
+        <h2 class="ref-section-title">رؤيتنا ورسالتنا</h2>
+        <p class="ref-section-subtitle">الهدف الذي نسعى لتحقيقه والمنهج الذي نتبعه</p>
+      </div>
+      <div class="ref-grid-2">
+        <div class="ref-card ref-feature">
+          <div class="icon"><i class="bi bi-award-fill"></i></div>
+          <h3>رؤيتنا</h3>
+          <p>مؤسسة رائدة موثوقة متخصصة في تقديم معرفة أصيلة رافدة للقيم العليا للوطن.</p>
         </div>
-    </footer>
+        <div class="ref-card ref-feature">
+          <div class="icon"><i class="bi bi-compass-fill"></i></div>
+          <h3>رسالتنا</h3>
+          <p>منارة هدى لتعميق الوعي المجتمعي ونشر المعارف الصحيحة ببرامج نوعية وخبرات مؤهلة وطرق ميسرة وجاذبة.</p>
+        </div>
+      </div>
+    </div>
+  </section>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-    <script>
-        // جافاسكريبت لتغيير شكل شريط التنقل عند التمرير
-        const navbar = document.querySelector('.navbar');
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 50) {
-                navbar.classList.add('scrolled');
-            } else {
-                navbar.classList.remove('scrolled');
-            }
-        });
-        
-        // تحديث السنة في الفوتر تلقائياً
-        document.getElementById('year').textContent = new Date().getFullYear();
-    </script>
+  <!-- ====== Goals ====== -->
+  <section id="goals" class="ref-wrap">
+    <div class="ref-section">
+      <div class="ref-section-header">
+        <h2 class="ref-section-title">أهدافنا الاستراتيجية</h2>
+        <p class="ref-section-subtitle">خطوات عملية لتحقيق الرؤية</p>
+      </div>
+      <div class="ref-grid-2">
+        <div class="ref-card ref-feature">
+          <div class="icon"><i class="bi bi-shield-check"></i></div>
+          <h3>تحصين الجيل (الفتيات)</h3>
+          <p>تمكين فتيات قادرات على تمييز المعارف الصحيحة من الزائفة.</p>
+        </div>
+        <div class="ref-card ref-feature">
+          <div class="icon"><i class="bi bi-mortarboard-fill"></i></div>
+          <h3>بناء الكفاءات التربوية</h3>
+          <p>إعداد كفاءات تربوية قادرة على تعميق القناعات.</p>
+        </div>
+        <div class="ref-card ref-feature">
+          <div class="icon"><i class="bi bi-lightning-charge-fill"></i></div>
+          <h3>مواكبة المستجدات</h3>
+          <p>تمكين المعلمات من ربط المناهج بالنوازل المعاصرة.</p>
+        </div>
+        <div class="ref-card ref-feature">
+          <div class="icon"><i class="bi bi-cash-coin"></i></div>
+          <h3>الاستدامة المالية</h3>
+          <p>تحقيق الاكتفاء المالي.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====== Values ====== -->
+  <section id="values" class="ref-wrap">
+    <div class="ref-section">
+      <div class="ref-section-header">
+        <h2 class="ref-section-title">قيمنا الجوهرية</h2>
+        <p class="ref-section-subtitle">المبادئ التي تقود عملنا</p>
+      </div>
+      <div class="ref-grid-3">
+        <div class="ref-card ref-feature">
+          <div class="icon"><i class="bi bi-star-fill"></i></div>
+          <h3>الجودة</h3>
+          <p>معايير تنفيذ عالية في البرامج والمخرجات.</p>
+        </div>
+        <div class="ref-card ref-feature">
+          <div class="icon"><i class="bi bi-patch-check-fill"></i></div>
+          <h3>المصداقية والشفافية</h3>
+          <p>وضوح في الأهداف ونتائج قابلة للقياس.</p>
+        </div>
+        <div class="ref-card ref-feature">
+          <div class="icon"><i class="bi bi-people-fill"></i></div>
+          <h3>التعاون</h3>
+          <p>شراكات فعّالة وأثر مضاعف.</p>
+        </div>
+        <div class="ref-card ref-feature">
+          <div class="icon"><i class="bi bi-lightbulb-fill"></i></div>
+          <h3>الابتكار</h3>
+          <p>حلول تعليمية ووسائط معاصرة مؤثرة.</p>
+        </div>
+        <div class="ref-card ref-feature">
+          <div class="icon"><i class="bi bi-arrow-repeat"></i></div>
+          <h3>المرونة</h3>
+          <p>قابلية للتطوير والتكيّف وفق المستجدات.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====== Board ====== -->
+  <section id="board" class="ref-wrap">
+    <div class="ref-section text-center">
+      <div class="ref-section-header">
+        <h2 class="ref-section-title">مجلس الإدارة</h2>
+        <p class="ref-section-subtitle">نخبة من القادة والخبراء الذين يوجّهون مسيرة المؤسسة</p>
+      </div>
+      <div class="mx-auto" style="max-width: 640px;">
+        <a href="hidayat-info.pdf" download class="ref-card ref-link-card">
+          <div class="left">
+            <div class="icon"><i class="bi bi-file-earmark-arrow-down"></i></div>
+            <div>
+              <div class="title">تحميل مجلس الإدارة (PDF)</div>
+              <div class="text-muted small">ملف تعريفي مُحدّث</div>
+            </div>
+          </div>
+          <i class="bi bi-download"></i>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====== Reports ====== -->
+  <section id="reports" class="ref-wrap">
+    <div class="ref-section">
+      <div class="ref-section-header text-center">
+        <h2 class="ref-section-title">التقارير</h2>
+        <p class="ref-section-subtitle">إطلالة شفافة على الإنجازات والأثر</p>
+      </div>
+      <div class="mx-auto" style="max-width: 640px;">
+        <a href="hidayat-info.pdf" download class="ref-card ref-link-card">
+          <div class="left">
+            <div class="icon"><i class="bi bi-file-earmark-arrow-down"></i></div>
+            <div>
+              <div class="title">تحميل التقرير المالي(PDF)</div>
+            </div>
+          </div>
+          <i class="bi bi-download"></i>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====== Contact ====== -->
+  <section id="contact" class="ref-wrap">
+    <div class="ref-section">
+      <div class="ref-section-header">
+        <h2 class="ref-section-title">تواصل معنا</h2>
+        <p class="ref-section-subtitle">نحن هنا للإجابة على استفساراتك</p>
+      </div>
+
+      <div class="contact-container">
+        <div class="contact-item">
+          <div class="contact-icon"><i class="bi bi-envelope"></i></div>
+          <div class="contact-details">
+            <h3>البريد الإلكتروني</h3>
+            <p>Hadayaat1446@gmail.com</p>
+          </div>
+        </div>
+
+        <div class="contact-item">
+          <div class="contact-icon"><i class="bi bi-telephone"></i></div>
+          <div class="contact-details">
+            <h3>رقم الهاتف</h3>
+            <p>+966 59 665 8710</p>
+          </div>
+        </div>
+
+        <div class="contact-item">
+          <div class="contact-icon"><i class="bi bi-geo-alt"></i></div>
+          <div class="contact-details">
+            <h3>العنوان</h3>
+            <p>جدة، المملكة العربية السعودية</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====== Footer ====== -->
+  <footer id="footer" class="ref-footer">
+    <div class="grid">
+      <div>
+        <h3 style="color: var(--ref-primary-color); font-family: var(--font-family-title);">هدايات</h3>
+        <p>مؤسسة تعليمية مرخصة تعمل على تعميق الوعي ونشر المعارف الصحيحة بوسائل معاصرة.</p>
+      </div>
+    </div>
+    <div class="bottom">
+      <span>&copy; <span id="year">2024</span> هدايات. جميع الحقوق محفوظة.</span>
+    </div>
+  </footer>
+
+  <!-- ====== سكربتات ====== -->
+<script>
+  const hdr = document.querySelector('.hdr');
+  let lastScrollY = 0;
+  hdr.style.transform = 'translateY(-100%)';
+  hdr.style.transition = 'transform 0.4s ease, box-shadow 0.3s ease';
+
+  window.addEventListener('scroll', () => {
+    const currentScrollY = window.scrollY;
+
+    // لما ينزل المستخدم تحت 100px يظهر الهيدر
+    if (currentScrollY > 100 && currentScrollY > lastScrollY) {
+      hdr.style.transform = 'translateY(0)';
+      hdr.classList.add('scrolled');
+    } else if (currentScrollY < lastScrollY && currentScrollY < 80) {
+      // لما يرجع فوق يخفي الهيدر
+      hdr.style.transform = 'translateY(-100%)';
+      hdr.classList.remove('scrolled');
+    }
+
+    lastScrollY = currentScrollY;
+  });
+
+  // تحديث السنة تلقائياً
+  document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
