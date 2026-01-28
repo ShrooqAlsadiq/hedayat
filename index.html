@@ -6,41 +6,47 @@
   <title>مؤسسة هدايات التعليمية</title>
 
   <meta name="description" content="مؤسسة هدايات التعليمية - منارة هدى لتعميق الوعي المجتمعي ونشر المعارف الصحيحة عبر برامج نوعية بخبرات مؤهلة وطرق ميسرة وجاذبة.">
-  <link rel="icon" href="favicon.ico" />
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="icon.png">
 
-  <!-- Fonts & Bootstrap -->
+  <!-- خطوط + بوتستراب -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Cairo:wght@400;700;900&display=swap" rel="stylesheet" />
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
 
-  <!-- إشارة لوجود جافاسكربت (تستخدم في أنيميشن السكrol) -->
   <script>
     document.documentElement.classList.add('js');
   </script>
 
   <style>
     :root {
-      --primary: #37473c;        /* الأخضر الغامق */
-      --primary-soft: #556b60;   /* درجة أفتح */
-      --accent: #c28b3f;         /* لون CTA (ذهبي دافي) */
-      --bg-main: #f5efe1;        /* خلفية الأقسام */
-      --bg-card: #ffffff;        /* خلفية الكروت */
-      --bg-footer: #37473c;
-      --text-main: #37473c;
-      --text-muted: #666666;
-      --text-on-dark: #f5f5f5;
+      --primary: #3f422f;        /* الأخضر الأساسي */
+      --primary-soft: #5a6545;   /* درجة أفتح */
+      --accent: #c28b3f;         /* الذهبي للأزرار */
+
+      --deep-bg: #111713;        /* خلفية عامة داكنة مائلة للأخضر */
+      --nav-beige: #dedbd2;      /* شريط علوي فاتح */
+      --bg-main: #101713;        /* خلفية الأقسام الداكنة */
+      --bg-card: #e9e5dd;        /* لون الكروت */
+      --bg-footer: #f4f1ea;      /* خلفية الفوتر */
+
+      --text-main: #f5f5f5;          /* النص على الخلفية الداكنة */
+      --text-card-main: #3f422f;     /* النص داخل الكروت */
+      --text-card-muted: #5b6762;    /* نص ثانوي داخل الكروت */
+      --text-muted: #c1c1c1;
       --border-soft: #e0e0e0;
-      --shadow-soft: 0 8px 24px rgba(0, 0, 0, 0.08);
-      --shadow-strong: 0 16px 40px rgba(0, 0, 0, 0.16);
+
+      --shadow-soft: 0 8px 24px rgba(0, 0, 0, 0.24);
+      --shadow-strong: 0 16px 40px rgba(0, 0, 0, 0.45);
+
       --radius-card: 20px;
       --nav-h: 80px;
       --font-family-arabic: 'Cairo', sans-serif;
       --font-family-title: 'Amiri', serif;
     }
 
-    /* ===== القواعد العامة ===== */
     * {
       box-sizing: border-box;
     }
@@ -53,7 +59,7 @@
       margin: 0;
       padding: 0;
       color: var(--text-main);
-      background-color: #ffffff;
+      background-color: var(--deep-bg);
       overflow-x: hidden;
     }
 
@@ -65,21 +71,34 @@
       scroll-margin-top: calc(var(--nav-h) + 16px);
     }
 
-    /* ===== الهيدر / النافبار ===== */
+    /* ================= الهيدر / النافبار ================= */
+
     .hdr.navbar {
-      background-color: #ffffff;
+      background:
+        linear-gradient(
+          to bottom,
+          rgba(0, 0, 0, 0.85),
+          rgba(0, 0, 0, 0.55),
+          rgba(0, 0, 0, 0.0)
+        );
       padding-block: 0.9rem;
-      transition: background-color 0.3s ease, box-shadow 0.3s ease, padding 0.3s ease;
+      transition:
+        background-color 0.3s ease,
+        background 0.3s ease,
+        box-shadow 0.3s ease,
+        padding 0.3s ease;
       box-shadow: none;
       min-height: var(--nav-h);
+      z-index: 20;
     }
 
     .hdr.scrolled {
-      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+      background: var(--nav-beige);
+      box-shadow: 0 4px 18px rgba(0,0,0,0.25);
     }
 
     .hdr .navbar-brand img {
-      max-height: 80px;
+      max-height: 65px;
       height: auto;
       width: auto;
       display: block;
@@ -91,11 +110,18 @@
     }
 
     .nav-rtl .nav-link {
-      color: var(--text-main) !important;
       font-weight: 700;
       position: relative;
       padding-inline: 0.6rem;
-      font-size: 0.95rem;
+      font-size: 0.9rem;
+    }
+
+    .hdr:not(.scrolled) .nav-link {
+      color: #ffffff !important;
+    }
+
+    .hdr.scrolled .nav-link {
+      color: var(--text-card-main) !important;
     }
 
     .nav-rtl .nav-link::after {
@@ -103,9 +129,9 @@
       position: absolute;
       bottom: -6px;
       inset-inline-end: 0;
-      height: 3px;
+      height: 2px;
       width: 0;
-      background: var(--primary);
+      background: var(--accent);
       transition: width 0.25s;
     }
 
@@ -115,6 +141,10 @@
     }
 
     .navbar-toggler {
+      border-color: rgba(255,255,255,0.6);
+    }
+
+    .hdr.scrolled .navbar-toggler {
       border-color: rgba(0,0,0,0.2);
     }
 
@@ -123,7 +153,11 @@
     }
 
     .navbar-toggler-icon {
-      background-image:url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(55,71,60,1)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+      background-image:url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(255,255,255,1)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+    }
+
+    .hdr.scrolled .navbar-toggler-icon {
+      background-image:url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(63,66,47,1)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
     }
 
     .whatsapp-btn {
@@ -159,29 +193,46 @@
 
     @media (max-width: 991.98px) {
       .hdr .navbar-collapse {
-        background: #ffffff;
+        background: rgba(0,0,0,0.96);
         border-radius: 12px;
-        box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+        box-shadow: 0 10px 30px rgba(0,0,0,0.6);
         padding: 0.75rem;
         margin-top: 0.75rem;
       }
+      .hdr.scrolled .navbar-collapse {
+        background: var(--nav-beige);
+      }
+
       .nav-rtl .nav-link {
         padding: 0.5rem 0.75rem;
       }
     }
 
-    /* ===== Hero ===== */
+    /* ================= Hero ================= */
+
     .hero-section {
-      min-height: calc(100vh - var(--nav-h));  /* ارتفاع الشاشة ناقص الهيدر */
+      min-height: calc(100vh - var(--nav-h)); /* متلائم مع ارتفاع الشاشة */
       display: flex;
-      align-items: flex-start;
+      align-items: center;
       justify-content: center;
-      background-color: var(--bg-main);
       position: relative;
       overflow: hidden;
       text-align: center;
-      padding-top: calc(var(--nav-h) + 2rem);
-      padding-bottom: 3rem;
+      padding-top: calc(var(--nav-h) + 2.5rem);
+      padding-bottom: 6rem;
+      color: #ffffff;
+      background:
+        linear-gradient(to bottom, rgba(0,0,0,0.25) 0, rgba(0,0,0,0.50) 70%, rgba(0,0,0,0.95) 100%),
+        radial-gradient(circle at 20% 0%, rgba(0, 120, 80, 0.22) 0, rgba(0,0,0,0) 55%),
+        url('hero_image1.jpeg') center center / cover no-repeat fixed;
+    }
+
+    @media (max-width: 768px) {
+      .hero-section {
+        background-attachment: scroll;
+        padding-top: calc(var(--nav-h) + 1.8rem);
+        padding-bottom: 4.5rem;
+      }
     }
 
     .hero-section .container {
@@ -190,9 +241,9 @@
     }
 
     .hero-logo-img {
-      width: min(85vw, 360px);
+      width: min(85vw, 320px);
       height: auto;
-      filter: drop-shadow(0 10px 30px rgba(55,71,60,0.5));
+      filter: drop-shadow(0 14px 40px rgba(0,0,0,0.85));
       animation: fadeInDown 1.4s ease-out;
     }
 
@@ -201,53 +252,31 @@
       100% { opacity: 1; transform: translateY(0); }
     }
 
-    .leaf-container {
-      position: absolute;
-      inset: 0;
-      pointer-events: none;
-      z-index: 1;
-    }
-
-    .leaf {
-      position: absolute;
-      background: rgba(55,71,60,0.09);
-      border-radius: 0 100% 0 100%;
-      filter: blur(0.6px);
-      opacity: 1;
-      top: -60px;
-      animation: fall linear infinite;
-      will-change: transform;
-    }
-
-    .leaf:nth-child(even) {
-      background: rgba(200, 139, 63, 0.18);
-    }
-
-    @keyframes fall {
-      0%   { transform: translateY(0) translateX(0) rotate(0deg); }
-      50%  { transform: translateY(55vh) translateX(20px) rotate(160deg); }
-      100% { transform: translateY(110vh) translateX(40px) rotate(320deg); }
-    }
-
-    .leaf-1 { width: 70px; height: 24px; left: 12%; animation-duration: 11s; }
-    .leaf-2 { width: 60px; height: 20px; left: 32%; animation-duration: 8s; animation-delay: 1.5s; }
-    .leaf-3 { width: 68px; height: 22px; left: 50%; animation-duration: 9.5s; animation-delay: 2.5s; }
-    .leaf-4 { width: 62px; height: 20px; left: 68%; animation-duration: 10.5s; animation-delay: 3.5s; }
-    .leaf-5 { width: 56px; height: 18px; left: 82%; animation-duration: 7.5s; animation-delay: 4.5s; }
-    .leaf-6 { width: 72px; height: 24px; left: 5%;  animation-duration: 12s; animation-delay: 5.5s; }
-
     .hero-title {
       font-family: var(--font-family-title);
-      color: var(--primary);
+      color: #ffffff;
     }
 
     .hero-lead {
-      color: var(--primary);
+      color: #f1eee7;
       max-width: 720px;
       margin-inline: auto;
     }
 
-    /* ===== أزرار CTA ===== */
+    /* أمواج أسفل الهيرو (شكل ناعم مثل إرث) */
+    .hero-wave {
+      position: absolute;
+      bottom: -70px; /* نازل شوي داخل القسم اللي بعده */
+      left: 0;
+      width: 100%;
+      height: 160px;
+      display: block;
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    /* ================= أزرار CTA ================= */
+
     .btn-cta-primary,
     .btn-cta-secondary {
       display: inline-flex;
@@ -294,9 +323,9 @@
       border-radius: 50px;
       padding: 14px 32px;
       font-weight: 700;
-      border: 2px solid var(--primary);
+      border: 2px solid #ffffff;
       background: transparent;
-      color: var(--primary);
+      color: #ffffff;
       font-size: 0.95rem;
       transition:
         background-color 0.2s ease,
@@ -306,8 +335,8 @@
     }
 
     .btn-cta-secondary:hover {
-      background: var(--primary);
-      color: #ffffff;
+      background: #ffffff;
+      color: var(--primary);
       transform: translateY(-1px);
       box-shadow: var(--shadow-soft);
     }
@@ -315,8 +344,8 @@
     .btn-cta-secondary:active,
     .btn-cta-secondary:focus,
     .btn-cta-secondary:focus-visible {
-      background: var(--primary-soft);
-      color: #ffffff;
+      background: #e5e5e5;
+      color: var(--primary-soft);
       transform: translateY(0);
       box-shadow: inset 0 2px 4px rgba(0,0,0,0.25);
       outline: none;
@@ -330,9 +359,12 @@
       }
     }
 
-    /* ===== أقسام المحتوى ===== */
+    /* ================= أقسام المحتوى ================= */
+
     .ref-wrap {
       background: var(--bg-main);
+      position: relative;
+      z-index: 0;
     }
 
     .ref-section {
@@ -363,7 +395,7 @@
       transform: translateX(50%);
       width: 90px;
       height: 4px;
-      background: var(--primary);
+      background: var(--accent);
       border-radius: 2px;
     }
 
@@ -381,6 +413,7 @@
       box-shadow: var(--shadow-soft);
       transition: transform 0.25s ease, box-shadow 0.25s ease;
       position: relative;
+      color: var(--text-card-main);
     }
 
     .ref-card:hover {
@@ -418,7 +451,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      background: linear-gradient(135deg, #f5e6d3, #ebd5b3);
+      background: linear-gradient(135deg, #f5e6d3, #c28b3f);
       color: var(--primary);
       font-size: 1.7rem;
       margin-bottom: 1rem;
@@ -428,12 +461,12 @@
       font-family: var(--font-family-arabic);
       font-size: 1.1rem;
       font-weight: 800;
-      color: var(--text-main);
+      color: var(--text-card-main);
       margin: 0.5rem 0 0.5rem;
     }
 
     .ref-feature p {
-      color: var(--text-muted);
+      color: var(--text-card-muted);
       margin: 0;
       font-size: 0.95rem;
     }
@@ -448,7 +481,8 @@
       color: rgba(0,0,0,0.05);
     }
 
-    /* أنيميشن الكشف عند التمرير */
+    /* أنيميشن الكشف */
+
     html.js .reveal-on-scroll {
       opacity: 0;
       transform: translateY(16px);
@@ -460,15 +494,17 @@
       transform: translateY(0);
     }
 
-    /* ===== كروت روابط التحميل ===== */
+    /* كروت روابط التحميل */
+
     .ref-link-card {
       padding: 1.5rem;
       display: flex;
       align-items: center;
       justify-content: space-between;
       gap: 1rem;
-      color: inherit;
+      color: var(--text-card-main);
       border: 2px solid rgba(0,0,0,0.06);
+      background: var(--bg-card);
     }
 
     .ref-link-card .left {
@@ -483,7 +519,7 @@
       border-radius: 14px;
       display: grid;
       place-items: center;
-      background: linear-gradient(135deg, #f5e6d3, #ebd5b3);
+      background: linear-gradient(135deg, #f5e6d3, #c28b3f);
       color: var(--primary);
       font-size: 1.5rem;
     }
@@ -493,14 +529,15 @@
     }
 
     .ref-link-card small {
-      color: var(--text-muted);
+      color: var(--text-card-muted);
     }
 
     .ref-link-card:hover {
       border-color: var(--primary);
     }
 
-    /* ===== قسم البرامج / المشاريع ===== */
+    /* تاغ البرامج */
+
     .program-tag {
       display: inline-flex;
       align-items: center;
@@ -514,7 +551,8 @@
       margin-bottom: 0.7rem;
     }
 
-    /* ===== قسم التواصل ===== */
+    /* قسم التواصل */
+
     .contact-container {
       display: grid;
       grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
@@ -527,6 +565,7 @@
       padding: 2rem;
       border-radius: var(--radius-card);
       box-shadow: var(--shadow-soft);
+      color: var(--text-card-main);
     }
 
     .form-group {
@@ -537,7 +576,7 @@
       display: block;
       margin-bottom: 0.35rem;
       font-weight: 700;
-      color: var(--text-main);
+      color: var(--text-card-main);
       font-size: 0.95rem;
     }
 
@@ -549,15 +588,15 @@
       border-radius: 10px;
       font-size: 0.95rem;
       background: #ffffff;
-      color: var(--text-main);
+      color: var(--text-card-main);
       transition: border-color 0.2s ease, box-shadow 0.2s ease;
     }
 
     .form-input:focus,
     .form-textarea:focus {
       outline: none;
-      border-color: var(--primary);
-      box-shadow: 0 0 0 2px rgba(55,71,60,0.15);
+      border-color: var(--accent);
+      box-shadow: 0 0 0 2px rgba(194,139,63,0.35);
     }
 
     .form-textarea {
@@ -598,6 +637,7 @@
       align-items: center;
       gap: 1rem;
       transition: transform 0.2s ease, box-shadow 0.2s ease;
+      color: var(--text-card-main);
     }
 
     .contact-item:hover {
@@ -611,7 +651,7 @@
       border-radius: 14px;
       display: grid;
       place-items: center;
-      background: linear-gradient(135deg, #f5e6d3, #ebd5b3);
+      background: linear-gradient(135deg, #f5e6d3, #c28b3f);
       color: var(--primary);
       font-size: 1.3rem;
     }
@@ -619,11 +659,11 @@
     .contact-details h3 {
       font-size: 1rem;
       margin: 0 0 0.15rem;
-      color: var(--text-main);
+      color: var(--text-card-main);
     }
 
     .contact-details p {
-      color: var(--text-muted);
+      color: var(--text-card-muted);
       margin: 0;
       font-size: 0.92rem;
       word-break: break-word;
@@ -634,94 +674,180 @@
         grid-template-columns: minmax(0,1fr);
       }
     }
+/* صف الأيقونات داخل كرت تابعنا على */
+/* صف الأيقونات داخل كرت تابعنا على */
+.social-icons-row {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+}
 
-    /* ===== Footer ===== */
-    .ref-footer {
+/* شكل الأيقونات الدائرية – ذهبي */
+.social-icon-circle {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: #f3efe7;                 /* خلفية فاتحة */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+  color: var(--accent);                 /* الذهبي الأساسي */
+  border: 2px solid rgba(194,139,63,0.25);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    background-color 0.2s ease,
+    color 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.social-icon-circle:hover {
+  transform: translateY(-2px);
+  background-color: var(--accent);      /* الذهبي ممتلئ */
+  color: #ffffff;                       /* الأيقونة تصير بيضاء */
+  border-color: var(--accent);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.18);
+}
+
+
+    /* ================= Footer جديد ================= */
+
+    .site-footer {
       background-color: var(--bg-footer);
-      color: var(--text-on-dark);
-      padding: 3rem 1.5rem;
+      color: #3f422f;
+      padding: 3rem 1.5rem 2rem;
+      text-align: center;
     }
 
-    .ref-footer a {
-      color: #e8e8e8;
+    .site-footer a {
+      color: inherit;
       text-decoration: none;
     }
 
-    .ref-footer a:hover {
-      color: #ffffff;
+    .site-footer a:hover {
+      text-decoration: underline;
     }
 
-    .ref-footer .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    .footer-top {
+      max-width: 900px;
+      margin: 0 auto 1.5rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .footer-logos {
+      display: flex;
+      align-items: center;
+      justify-content: center;
       gap: 2rem;
-      max-width: 1200px;
-      margin: 0 auto;
+      margin-bottom: 0.75rem;
     }
 
-    .ref-footer .bottom {
-      max-width: 1200px;
-      margin: 1.5rem auto 0;
-      padding-top: 1rem;
-      text-align: center;
-      color: #e0e0e0;
-      border-top: 1px solid rgba(255,255,255,0.2);
-      font-size: 0.85rem;
+    .footer-logo {
+      height: 70px;
+      width: auto;
     }
 
-    .ref-footer-title {
-      color: #f5e6d3;
-      font-family: var(--font-family-title);
-      font-size: 1.5rem;
-      margin-bottom: 0.5rem;
+    .footer-license {
+      margin: 0;
+      font-size: 0.95rem;
+      color: #666666;
     }
 
-    /* ===== استجابة عامة ===== */
+    .footer-divider {
+      border: 0;
+      border-top: 1px solid rgba(0, 0, 0, 0.08);
+      margin: 1.5rem auto;
+      max-width: 1100px;
+    }
+
+.footer-bottom {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;      /* نخلي العناصر تحت بعض */
+  align-items: center;         /* توسيط أفقي */
+  justify-content: center;     /* توسيط عمودي داخل البلوك */
+  gap: 0.6rem;
+  font-size: 0.85rem;
+  text-align: center;          /* النص في الوسط */
+}
+
+
+    .footer-copy {
+      white-space: nowrap;
+    }
+
+    .footer-made {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .footer-made-text {
+      color: #888888;
+    }
+
+    .footer-made-logo {
+      height: 32px;
+      width: auto;
+    }
+
     @media (max-width: 768px) {
       .ref-section {
         padding: 4rem 1.25rem;
       }
 
       .hero-section {
-        min-height: auto;
-        padding-top: calc(var(--nav-h) + 1.5rem);
-        padding-bottom: 3rem;
+        padding-top: calc(var(--nav-h) + 1.8rem);
+        padding-bottom: 4.5rem;
+      }
+
+      .footer-bottom {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .footer-copy {
+        white-space: normal;
+        
       }
     }
   </style>
 </head>
 
 <body>
-  <!-- ===== Navbar ===== -->
-  <nav class="navbar navbar-expand-lg fixed-top hdr" data-bs-theme="light" aria-label="التنقل الرئيسي">
+  <!-- ================= Navbar ================= -->
+  <nav class="navbar navbar-expand-lg fixed-top hdr" aria-label="التنقل الرئيسي">
     <div class="container align-items-center">
-      <!-- الشعار -->
       <a class="navbar-brand d-flex align-items-center" href="#home">
-        <img src="logo2.png" alt="شعار هدايات" />
+        <img src="1.png" alt="شعار هدايات" />
         <span class="visually-hidden">الانتقال إلى بداية الصفحة</span>
       </a>
 
       <!-- واتساب (موبايل) -->
       <a
         class="whatsapp-btn d-flex d-lg-none ms-auto me-2"
-        href="https://wa.me/966596658710?text=%D9%85%D8%B1%D8%AD%D8%A8%D8%A7%D9%8B%20%D9%87%D8%AF%D8%A7%D9%8A%D8%A7%D8%AA"
+        href="https://wa.me/966549078774?text=%D9%85%D8%B1%D8%AD%D8%A8%D8%A7%D9%8B%20%D9%87%D8%AF%D8%A7%D9%8A%D8%A7%D8%AA"
         target="_blank" rel="noopener"
         aria-label="تواصل عبر واتساب" title="تواصل عبر واتساب">
         <i class="bi bi-whatsapp" aria-hidden="true"></i>
       </a>
 
-      <!-- زر القائمة -->
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMain"
               aria-controls="navMain" aria-expanded="false" aria-label="إظهار القائمة">
         <span class="navbar-toggler-icon"></span>
       </button>
 
-      <!-- الروابط -->
       <div class="collapse navbar-collapse" id="navMain">
         <ul class="navbar-nav nav-rtl mx-auto gap-lg-2">
           <li class="nav-item"><a class="nav-link" href="#about">من نحن</a></li>
           <li class="nav-item"><a class="nav-link" href="#vision">الرؤية والرسالة</a></li>
-          <li class="nav-item"><a class="nav-link" href="#projects">برامجنا</a></li>
+         <!--<li class="nav-item"><a class="nav-link" href="#projects">برامجنا</a></li>-->
           <li class="nav-item"><a class="nav-link" href="#goals">الأهداف الاستراتيجية</a></li>
           <li class="nav-item"><a class="nav-link" href="#values">قيمنا</a></li>
           <li class="nav-item"><a class="nav-link" href="#board">مجلس الإدارة</a></li>
@@ -733,7 +859,7 @@
         <div class="d-none d-lg-flex ms-lg-3">
           <a
             class="whatsapp-btn"
-            href="https://wa.me/966596658710?text=%D9%85%D8%B1%D8%AD%D8%A8%D8%A7%D9%8B%20%D9%87%D8%AF%D8%A7%D9%8A%D8%A7%D8%AA"
+            href="https://wa.me/966549078774?text=%D9%85%D8%B1%D8%AD%D8%A8%D8%A7%D9%8B%20%D9%87%D8%AF%D8%A7%D9%8A%D8%A7%D8%AA"
             target="_blank" rel="noopener"
             aria-label="تواصل عبر واتساب" title="تواصل عبر واتساب">
             <i class="bi bi-whatsapp" aria-hidden="true"></i>
@@ -744,20 +870,12 @@
   </nav>
 
   <main>
-    <!-- ===== Hero ===== -->
+    <!-- ================= Hero ================= -->
     <section id="home" class="hero-section">
-      <div class="leaf-container">
-        <div class="leaf leaf-1"></div>
-        <div class="leaf leaf-2"></div>
-        <div class="leaf leaf-3"></div>
-        <div class="leaf leaf-4"></div>
-        <div class="leaf leaf-5"></div>
-        <div class="leaf leaf-6"></div>
-      </div>
       <div class="container">
         <div class="row justify-content-center">
           <div class="col-lg-10">
-            <img src="logo2.png" alt="شعار هدايات" class="hero-logo-img mb-5" />
+            <img src="2.png" alt="شعار هدايات" class="hero-logo-img mb-5" />
             <h1 class="display-6 fw-bold hero-title mb-3">منارة هدى لتعميق الوعي المجتمعي</h1>
             <p class="lead hero-lead mb-4">
               مؤسسة تعليمية موثوقة متخصصة في تقديم معرفة أصيلة رافدة للقيم العليا للوطن،
@@ -770,9 +888,16 @@
           </div>
         </div>
       </div>
+
+      <!-- موجة تحت الهيرو -->
+      <svg class="hero-wave" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 160" preserveAspectRatio="none">
+        <path fill="#101713" opacity="0.9" d="M0,80 C240,120 480,40 720,80 C960,120 1200,60 1440,90 L1440,160 L0,160 Z"></path>
+        <path fill="#101713" opacity="0.7" d="M0,90 C240,130 480,50 720,90 C960,130 1200,70 1440,100 L1440,160 L0,160 Z"></path>
+        <path fill="#101713" opacity="0.5" d="M0,100 C240,140 480,60 720,100 C960,140 1200,80 1440,110 L1440,160 L0,160 Z"></path>
+      </svg>
     </section>
 
-    <!-- ===== About ===== -->
+    <!-- ================= About ================= -->
     <section id="about" class="ref-wrap">
       <div class="ref-section">
         <div class="ref-section-header">
@@ -783,13 +908,13 @@
         <div class="ref-card p-4 p-md-5 reveal-on-scroll">
           <div class="row g-4 align-items-center">
             <div class="col-md-5">
-              <div class="p-4 rounded-3" style="background-color:#f5e6d3;">
+              <div class="p-4 rounded-3" style="background-color:#ebd5b3;">
                 <div class="d-flex flex-column align-items-center text-center">
                   <i class="bi bi-patch-check-fill display-5 mb-3" style="color:var(--primary);" aria-hidden="true"></i>
                   <h3 class="fw-bold" style="font-family: var(--font-family-title); color: var(--primary);">
                     مؤسسة تعليمية مسجلة
                   </h3>
-                  <p class="mb-0 text-muted">
+                  <p class="mb-0" style="color:var(--text-card-muted);">
                     نجمع بين الأصالة العلمية والوسائل المعاصرة المؤثرة لنصنع أثراً عميقاً ومستداماً.
                   </p>
                 </div>
@@ -799,11 +924,11 @@
               <h4 class="mb-3" style="font-family: var(--font-family-title); color: var(--primary);">
                 رسالتنا في تعميق الوعي
               </h4>
-              <p class="mb-3 text-muted">
-                نسعى لترسيخ المعارف الصحيحة وبناء  وعي راسخ يحصّن الفرد والمجتمع من الانحرافات الفكرية والقيمية؛
+              <p class="mb-3" style="color:var(--text-card-muted);">
+                نسعى لترسيخ المعارف الصحيحة وبناء وعي راسخ يحصّن الفرد والمجتمع من الانحرافات الفكرية والقيمية؛
                 وذلك عبر الجمع بين الأصالة العلمية والوسائل المعاصرة الجاذبة.
               </p>
-              <p class="mb-0 text-muted">
+              <p class="mb-0" style="color:var(--text-card-muted);">
                 نؤمن بأن الوعي العميق هو خط الدفاع الأول عن ثوابت الهوية الوطنية والإسلامية، وأن الاستثمار في بناء القناعات
                 هو استثمار في مستقبل الوطن كافة.
               </p>
@@ -813,7 +938,7 @@
       </div>
     </section>
 
-    <!-- ===== Vision & Mission ===== -->
+    <!-- ================= Vision & Mission ================= -->
     <section id="vision" class="ref-wrap">
       <div class="ref-section">
         <div class="ref-section-header">
@@ -841,7 +966,7 @@
       </div>
     </section>
 
-    <!-- ===== Programs / Projects ===== -->
+    <!-- ================= Programs ================= 
     <section id="projects" class="ref-wrap">
       <div class="ref-section">
         <div class="ref-section-header">
@@ -880,9 +1005,9 @@
           </div>
         </div>
       </div>
-    </section>
+    </section>-->
 
-    <!-- ===== Goals ===== -->
+    <!-- ================= Goals ================= -->
     <section id="goals" class="ref-wrap">
       <div class="ref-section">
         <div class="ref-section-header">
@@ -890,22 +1015,22 @@
           <p class="ref-section-subtitle">مسارات عمل واضحة لتحقيق رؤيتنا على المدى البعيد</p>
         </div>
         <div class="ref-grid-2">
-          <div class="ref-card ref-feature goal-card reveal-on-scroll" data-number="01">
+          <div class="ref-card ref-feature goal-card reveal-on-scroll" >
             <div class="icon"><i class="bi bi-shield-check" aria-hidden="true"></i></div>
             <h3>تحصين الجيل (الفتيات)</h3>
             <p>تمكين فتيات قادرات على تمييز المعارف الصحيحة من الزائفة، وبناء مناعة فكرية وقيمية راسخة.</p>
           </div>
-          <div class="ref-card ref-feature goal-card reveal-on-scroll" data-number="02">
+          <div class="ref-card ref-feature goal-card reveal-on-scroll" >
             <div class="icon"><i class="bi bi-mortarboard-fill" aria-hidden="true"></i></div>
             <h3>بناء الكفاءات التربوية</h3>
             <p>إعداد كفاءات تربوية قادرة على تعميق القناعات لا مجرد نقل المعلومات للطالبات.</p>
           </div>
-          <div class="ref-card ref-feature goal-card reveal-on-scroll" data-number="03">
+          <div class="ref-card ref-feature goal-card reveal-on-scroll" >
             <div class="icon"><i class="bi bi-lightning-charge-fill" aria-hidden="true"></i></div>
             <h3>مواكبة المستجدات</h3>
             <p>تمكين المعلمات من ربط المناهج بالنوازل المعاصرة والقضايا الفكرية الراهنة.</p>
           </div>
-          <div class="ref-card ref-feature goal-card reveal-on-scroll" data-number="04">
+          <div class="ref-card ref-feature goal-card reveal-on-scroll" >
             <div class="icon"><i class="bi bi-cash-coin" aria-hidden="true"></i></div>
             <h3>الاستدامة المالية</h3>
             <p>تحقيق الاكتفاء المالي للاستمرار في البرامج وتوسيع الأثر المجتمعي.</p>
@@ -914,7 +1039,7 @@
       </div>
     </section>
 
-    <!-- ===== Values ===== -->
+    <!-- ================= Values ================= -->
     <section id="values" class="ref-wrap">
       <div class="ref-section">
         <div class="ref-section-header">
@@ -951,7 +1076,7 @@
       </div>
     </section>
 
-    <!-- ===== Board ===== -->
+    <!-- ================= Board ================= -->
     <section id="board" class="ref-wrap">
       <div class="ref-section text-center">
         <div class="ref-section-header">
@@ -973,7 +1098,7 @@
       </div>
     </section>
 
-    <!-- ===== Reports ===== -->
+    <!-- ================= Reports ================= -->
     <section id="reports" class="ref-wrap">
       <div class="ref-section">
         <div class="ref-section-header text-center">
@@ -995,7 +1120,7 @@
       </div>
     </section>
 
-    <!-- ===== Contact ===== -->
+    <!-- ================= Contact ================= -->
     <section id="contact" class="ref-wrap">
       <div class="ref-section">
         <div class="ref-section-header">
@@ -1006,71 +1131,102 @@
         </div>
 
         <div class="contact-container">
-          <!-- نموذج تواصل -->
+          <div class="contact-form reveal-on-scroll">
+            <form id="contact-form" action="https://formspree.io/f/xwpdkzgd" method="POST">
+              <div class="form-group">
+                <label class="form-label" for="name">الاسم الكامل</label>
+                <input class="form-input" id="name" name="name" type="text" required />
+              </div>
 
-<div class="contact-form reveal-on-scroll">
-  <form id="contact-form" action="https://formspree.io/f/xwpdkzgd" method="POST">
-    <div class="form-group">
-      <label class="form-label" for="name">الاسم الكامل</label>
-      <input class="form-input" id="name" name="name" type="text" required />
+              <div class="form-group">
+                <label class="form-label" for="email">البريد الإلكتروني</label>
+                <input class="form-input" id="email" name="email" type="email" required />
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="subject">موضوع الرسالة</label>
+                <input class="form-input" id="subject" name="subject" type="text" />
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="message">نص الرسالة</label>
+                <textarea class="form-textarea" id="message" name="message" required></textarea>
+              </div>
+
+              <button type="submit" class="btn-form-submit">إرسال الرسالة</button>
+
+              <div id="form-status" class="mt-2" style="font-size:0.85rem;"></div>
+            </form>
+          </div>
+
+          <div class="contact-info">
+  <!-- البريد -->
+  <div class="contact-item reveal-on-scroll">
+    <div class="contact-icon"><i class="bi bi-envelope" aria-hidden="true"></i></div>
+    <div class="contact-details">
+      <h3>البريد الإلكتروني</h3>
+      <p>Hadayaat1446@gmail.com</p>
     </div>
+  </div>
 
-    <div class="form-group">
-      <label class="form-label" for="email">البريد الإلكتروني</label>
-      <input class="form-input" id="email" name="email" type="email" required />
+  <!-- الهاتف -->
+  <div class="contact-item reveal-on-scroll">
+    <div class="contact-icon"><i class="bi bi-telephone" aria-hidden="true"></i></div>
+    <div class="contact-details">
+      <h3>رقم الهاتف / واتساب</h3>
+      <p>+966 59 665 8710</p>
     </div>
+  </div>
 
-    <div class="form-group">
-      <label class="form-label" for="subject">موضوع الرسالة</label>
-      <input class="form-input" id="subject" name="subject" type="text" />
+  <!-- العنوان -->
+  <div class="contact-item reveal-on-scroll">
+    <div class="contact-icon"><i class="bi bi-geo-alt" aria-hidden="true"></i></div>
+    <div class="contact-details">
+      <h3>العنوان</h3>
+      <p>جدة، المملكة العربية السعودية</p>
     </div>
+  </div>
 
-    <div class="form-group">
-      <label class="form-label" for="message">نص الرسالة</label>
-      <textarea class="form-textarea" id="message" name="message" required></textarea>
+  <!-- بيانات الترخيص + الحساب البنكي -->
+  <div class="contact-item reveal-on-scroll">
+    <div class="contact-icon"><i class="bi bi-shield-lock" aria-hidden="true"></i></div>
+    <div class="contact-details">
+       <h3>معلومات الحساب البنكي</h3> 
+      <p>
+        رقم الحساب البنكي (آيبان):
+        <span dir="ltr" style="font-family: monospace;">
+          SA00 0000 0000 0000 0000 0000
+        </span>
+      </p>
     </div>
+  </div>
 
-    <button type="submit" class="btn-form-submit">إرسال الرسالة</button>
-
-    <!-- رسالة حالة الإرسال -->
-    <div id="form-status" class="mt-2" style="font-size:0.85rem;"></div>
-  </form>
+  <!-- تابعنا على (نفس شكل المربع فوق) -->
+  <div class="contact-item reveal-on-scroll">
+    <div class="contact-icon"><i class="bi bi-share" aria-hidden="true"></i></div>
+    <div class="contact-details">
+      <h3>تابعنا على</h3>
+      <div class="social-icons-row">
+        <a href="https://wa.me/966549078774" target="_blank" rel="noopener" class="social-icon-circle" aria-label="واتساب">
+          <i class="bi bi-whatsapp"></i>
+        </a>
+        <a href="#" target="_blank" rel="noopener" class="social-icon-circle" aria-label="سناب شات">
+          <i class="bi bi-snapchat"></i>
+        </a>
+        <a href="#" target="_blank" rel="noopener" class="social-icon-circle" aria-label="يوتيوب">
+          <i class="bi bi-youtube"></i>
+        </a>
+        <a href="#" target="_blank" rel="noopener" class="social-icon-circle" aria-label="انستغرام">
+          <i class="bi bi-instagram"></i>
+        </a>
+        <a href="#" target="_blank" rel="noopener" class="social-icon-circle" aria-label="منصة X">
+          <i class="bi bi-twitter-x"></i>
+        </a>
+      </div>
+    </div>
+  </div>
 </div>
 
-
-          <!-- معلومات التواصل -->
-          <div class="contact-info">
-            <div class="contact-item reveal-on-scroll">
-              <div class="contact-icon"><i class="bi bi-envelope" aria-hidden="true"></i></div>
-              <div class="contact-details">
-                <h3>البريد الإلكتروني</h3>
-                <p>Hadayaat1446@gmail.com</p>
-              </div>
-            </div>
-
-            <div class="contact-item reveal-on-scroll">
-              <div class="contact-icon"><i class="bi bi-telephone" aria-hidden="true"></i></div>
-              <div class="contact-details">
-                <h3>رقم الهاتف / واتساب</h3>
-                <p>+966 59 665 8710</p>
-              </div>
-            </div>
-
-            <div class="contact-item reveal-on-scroll">
-              <div class="contact-icon"><i class="bi bi-geo-alt" aria-hidden="true"></i></div>
-              <div class="contact-details">
-                <h3>العنوان</h3>
-                <p>جدة، المملكة العربية السعودية</p>
-              </div>
-            </div>
-
-            <div class="contact-item reveal-on-scroll">
-              <div class="contact-icon"><i class="bi bi-shield-lock" aria-hidden="true"></i></div>
-              <div class="contact-details">
-                <h3>بيانات الترخيص</h3>
-                <p>مؤسسة تعليمية مرخصة – رقم الترخيص: XXXXX – تحت إشراف الجهة المختصة.</p>
-              </div>
-            </div>
 
           </div>
         </div>
@@ -1078,145 +1234,142 @@
     </section>
   </main>
 
-  <!-- ===== Footer ===== -->
-  <footer id="footer" class="ref-footer">
-    <div class="grid">
-      <div>
-        <div class="ref-footer-title">هدايات</div>
-        <p style="max-width: 420px; font-size: 0.95rem;">
-          مؤسسة تعليمية مرخصة تعمل على تعميق الوعي ونشر المعارف الصحيحة بوسائل معاصرة،
-          تستهدف الفتيات والمعلمات والأسرة لبناء مجتمع واعٍ ثابت على قيمه.
-        </p>
+  <!-- ================= Footer ================= -->
+  <footer class="site-footer">
+    <div class="footer-top">
+      <div class="footer-logos">
+        <!-- لوجو هدايات -->
+        <img src="1.png" alt="شعار هدايات" class="footer-logo" />
+        <!-- لوجو المركز الوطني -->
+        <img src="national-center-logo.png" alt="شعار المركز الوطني لتنمية القطاع غير الربحي" class="footer-logo" />
+
       </div>
 
-      <!-- روابط سريعة فقط (قسم تابعنا تم حذفه) -->
-      <div>
-        <h4 style="font-size: 1rem; margin-bottom: 0.75rem;">روابط سريعة</h4>
-        <ul class="list-unstyled" style="font-size: 0.9rem;">
-          <li class="mb-1"><a href="#about">من نحن</a></li>
-          <li class="mb-1"><a href="#projects">برامجنا</a></li>
-          <li class="mb-1"><a href="#reports">التقارير</a></li>
-          <li class="mb-1"><a href="#contact">تواصل معنا</a></li>
-        </ul>
-      </div>
+      <p class="footer-license">
+        مرخّصة من المركز الوطني لتنمية القطاع غير الربحي برقم ١١٠٠٥٢٧٠٠٠
+      </p>
     </div>
 
-    <div class="bottom">
-      <span>&copy; <span id="year">2024</span> هدايات. جميع الحقوق محفوظة.</span>
+    <hr class="footer-divider" />
+
+    <div class="footer-bottom">
+      <div class="footer-copy">
+        جميع الحقوق محفوظة © <span id="year">2024</span> هدايات
+      </div>
+
+   
     </div>
   </footer>
 
-  <!-- ===== Scripts ===== -->
-<script>
-  // تحديث سنة الفوتر
-  const yearEl = document.getElementById('year');
-  if (yearEl) {
-    yearEl.textContent = new Date().getFullYear();
-  }
-
-  // إضافة ظل للهيدر عند النزول
-  const hdr = document.querySelector('.hdr');
-  window.addEventListener('scroll', () => {
-    if (!hdr) return;
-    if (window.scrollY > 60) {
-      hdr.classList.add('scrolled');
-    } else {
-      hdr.classList.remove('scrolled');
-    }
-  });
-
-  window.addEventListener('DOMContentLoaded', () => {
-    /* ===== 1) أنيميشن ظهور العناصر عند التمرير ===== */
-    const revealEls = document.querySelectorAll('.reveal-on-scroll');
-    if ('IntersectionObserver' in window) {
-      const observer = new IntersectionObserver((entries, obs) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('is-visible');
-            obs.unobserve(entry.target);
-          }
-        });
-      }, { threshold: 0.15 });
-
-      revealEls.forEach(el => observer.observe(el));
-    } else {
-      revealEls.forEach(el => el.classList.add('is-visible'));
+  <!-- ================= Scripts ================= -->
+  <script>
+    // سنة الفوتر
+    const yearEl = document.getElementById('year');
+    if (yearEl) {
+      yearEl.textContent = new Date().getFullYear();
     }
 
-    /* ===== 2) إرسال نموذج التواصل عبر Formspree ===== */
-    const contactForm = document.getElementById('contact-form');
-    if (contactForm) {
-      const btn = contactForm.querySelector('button[type="submit"]');
-      const statusEl = document.getElementById('form-status');
+    // تغيير شكل الهيدر مع السكول
+    const hdr = document.querySelector('.hdr');
+    function handleScroll() {
+      if (!hdr) return;
+      if (window.scrollY > 60) {
+        hdr.classList.add('scrolled');
+      } else {
+        hdr.classList.remove('scrolled');
+      }
+    }
+    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('load', handleScroll);
 
-      contactForm.addEventListener('submit', async (e) => {
-        e.preventDefault();
-
-        if (!btn || btn.disabled) return;
-
-        const originalText = btn.textContent;
-        btn.textContent = 'جاري الإرسال...';
-        btn.disabled = true;
-        if (statusEl) {
-          statusEl.textContent = '';
-          statusEl.style.color = '#666';
-        }
-
-        try {
-          const formData = new FormData(contactForm);
-
-          const resp = await fetch(contactForm.action, {
-            method: 'POST',
-            body: formData,
-            headers: { 'Accept': 'application/json' }
-          });
-
-          if (resp.ok) {
-            if (statusEl) {
-              statusEl.textContent = 'تم استلام رسالتك بنجاح، سنعود إليك قريباً.';
-              statusEl.style.color = '#2e7d32';
+    window.addEventListener('DOMContentLoaded', () => {
+      // أنيميشن ظهور العناصر عند التمرير
+      const revealEls = document.querySelectorAll('.reveal-on-scroll');
+      if ('IntersectionObserver' in window) {
+        const observer = new IntersectionObserver((entries, obs) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('is-visible');
+              obs.unobserve(entry.target);
             }
-            contactForm.reset();
-          } else {
+          });
+        }, { threshold: 0.15 });
+
+        revealEls.forEach(el => observer.observe(el));
+      } else {
+        revealEls.forEach(el => el.classList.add('is-visible'));
+      }
+
+      // إرسال نموذج التواصل عبر Formspree
+      const contactForm = document.getElementById('contact-form');
+      if (contactForm) {
+        const btn = contactForm.querySelector('button[type="submit"]');
+        const statusEl = document.getElementById('form-status');
+
+        contactForm.addEventListener('submit', async (e) => {
+          e.preventDefault();
+          if (!btn || btn.disabled) return;
+
+          const originalText = btn.textContent;
+          btn.textContent = 'جاري الإرسال...';
+          btn.disabled = true;
+          if (statusEl) {
+            statusEl.textContent = '';
+            statusEl.style.color = '#666';
+          }
+
+          try {
+            const formData = new FormData(contactForm);
+            const resp = await fetch(contactForm.action, {
+              method: 'POST',
+              body: formData,
+              headers: { 'Accept': 'application/json' }
+            });
+
+            if (resp.ok) {
+              if (statusEl) {
+                statusEl.textContent = 'تم استلام رسالتك بنجاح، سنعود إليك قريباً.';
+                statusEl.style.color = '#2e7d32';
+              }
+              contactForm.reset();
+            } else {
+              if (statusEl) {
+                statusEl.textContent = 'حدث خلل أثناء الإرسال، جرّبي مرة أخرى لاحقاً.';
+                statusEl.style.color = '#c62828';
+              }
+            }
+          } catch (err) {
             if (statusEl) {
-              statusEl.textContent = 'حدث خلل أثناء الإرسال، جرّبي مرة أخرى لاحقاً.';
+              statusEl.textContent = 'تعذر الاتصال بالخادم، تأكدي من الاتصال بالإنترنت.';
               statusEl.style.color = '#c62828';
             }
-          }
-        } catch (err) {
-          if (statusEl) {
-            statusEl.textContent = 'تعذر الاتصال بالخادم، تأكدي من الاتصال بالإنترنت.';
-            statusEl.style.color = '#c62828';
-          }
-        } finally {
-          btn.disabled = false;
-          btn.textContent = originalText;
-        }
-      });
-    }
-
-    /* ===== 3) إغلاق قائمة الجوال عند الضغط على أي رابط ===== */
-    const navMain    = document.getElementById('navMain');
-    const navToggler = document.querySelector('.navbar-toggler');
-
-    if (navMain && navToggler) {
-      const navLinks = navMain.querySelectorAll('.nav-link');
-
-      navLinks.forEach(link => {
-        link.addEventListener('click', () => {
-          const isTogglerVisible = window.getComputedStyle(navToggler).display !== 'none';
-          const isExpanded = navToggler.getAttribute('aria-expanded') === 'true';
-
-          if (isTogglerVisible && isExpanded) {
-            navToggler.click();
+          } finally {
+            btn.disabled = false;
+            btn.textContent = originalText;
           }
         });
-      });
-    }
-  });
-</script>
+      }
 
+      // إغلاق قائمة الجوال عند الضغط على رابط
+      const navMain    = document.getElementById('navMain');
+      const navToggler = document.querySelector('.navbar-toggler');
 
+      if (navMain && navToggler) {
+        const navLinks = navMain.querySelectorAll('.nav-link');
+
+        navLinks.forEach(link => {
+          link.addEventListener('click', () => {
+            const isTogglerVisible = window.getComputedStyle(navToggler).display !== 'none';
+            const isExpanded = navToggler.getAttribute('aria-expanded') === 'true';
+
+            if (isTogglerVisible && isExpanded) {
+              navToggler.click();
+            }
+          });
+        });
+      }
+    });
+  </script>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
