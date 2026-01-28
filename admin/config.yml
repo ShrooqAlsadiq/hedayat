@@ -1,0 +1,97 @@
+backend:
+  name: git-gateway
+  branch: main
+
+media_folder: "assets/uploads"
+public_folder: "/assets/uploads"
+
+locale: "ar"
+
+collections:
+  - name: "site"
+    label: "محتوى الموقع"
+    files:
+      - name: "home"
+        label: "الصفحة الرئيسية"
+        file: "content/site.json"
+        fields:
+          # HERO
+          - { label: "عنوان الهيرو", name: "hero_title", widget: "string" }
+          - { label: "وصف الهيرو", name: "hero_subtitle", widget: "text" }
+          - { label: "نص زر التبرع", name: "cta_donate_text", widget: "string" }
+          - { label: "رابط زر التبرع", name: "cta_donate_href", widget: "string" }
+          - { label: "نص زر التعريف", name: "cta_about_text", widget: "string" }
+          - { label: "رابط زر التعريف", name: "cta_about_href", widget: "string" }
+
+          # ABOUT
+          - { label: "عنوان قسم من نحن", name: "about_section_title", widget: "string" }
+          - { label: "وصف صغير تحت العنوان", name: "about_section_subtitle", widget: "string" }
+          - { label: "عنوان بطاقة اليسار", name: "about_left_title", widget: "string" }
+          - { label: "وصف بطاقة اليسار", name: "about_left_desc", widget: "text" }
+          - { label: "عنوان بطاقة اليمين", name: "about_right_title", widget: "string" }
+          - { label: "فقرة 1 (يمين)", name: "about_right_p1", widget: "text" }
+          - { label: "فقرة 2 (يمين)", name: "about_right_p2", widget: "text" }
+
+          # VISION/MISSION
+          - { label: "عنوان قسم الرؤية والرسالة", name: "vm_section_title", widget: "string" }
+          - { label: "وصف قسم الرؤية والرسالة", name: "vm_section_subtitle", widget: "string" }
+          - { label: "عنوان بطاقة الرؤية", name: "vision_title", widget: "string" }
+          - { label: "نص الرؤية", name: "vision_body", widget: "text" }
+          - { label: "عنوان بطاقة الرسالة", name: "mission_title", widget: "string" }
+          - { label: "نص الرسالة", name: "mission_body", widget: "text" }
+
+          # GOALS (4)
+          - { label: "عنوان الأهداف", name: "goals_section_title", widget: "string" }
+          - { label: "وصف الأهداف", name: "goals_section_subtitle", widget: "string" }
+          - { label: "هدف 1 - العنوان", name: "goal1_title", widget: "string" }
+          - { label: "هدف 1 - الوصف", name: "goal1_body", widget: "text" }
+          - { label: "هدف 2 - العنوان", name: "goal2_title", widget: "string" }
+          - { label: "هدف 2 - الوصف", name: "goal2_body", widget: "text" }
+          - { label: "هدف 3 - العنوان", name: "goal3_title", widget: "string" }
+          - { label: "هدف 3 - الوصف", name: "goal3_body", widget: "text" }
+          - { label: "هدف 4 - العنوان", name: "goal4_title", widget: "string" }
+          - { label: "هدف 4 - الوصف", name: "goal4_body", widget: "text" }
+
+          # VALUES (5)
+          - { label: "عنوان القيم", name: "values_section_title", widget: "string" }
+          - { label: "وصف القيم", name: "values_section_subtitle", widget: "string" }
+          - { label: "قيمة 1 - العنوان", name: "value1_title", widget: "string" }
+          - { label: "قيمة 1 - الوصف", name: "value1_body", widget: "text" }
+          - { label: "قيمة 2 - العنوان", name: "value2_title", widget: "string" }
+          - { label: "قيمة 2 - الوصف", name: "value2_body", widget: "text" }
+          - { label: "قيمة 3 - العنوان", name: "value3_title", widget: "string" }
+          - { label: "قيمة 3 - الوصف", name: "value3_body", widget: "text" }
+          - { label: "قيمة 4 - العنوان", name: "value4_title", widget: "string" }
+          - { label: "قيمة 4 - الوصف", name: "value4_body", widget: "text" }
+          - { label: "قيمة 5 - العنوان", name: "value5_title", widget: "string" }
+          - { label: "قيمة 5 - الوصف", name: "value5_body", widget: "text" }
+
+          # BOARD PDF
+          - { label: "عنوان مجلس الإدارة", name: "board_section_title", widget: "string" }
+          - { label: "وصف مجلس الإدارة", name: "board_section_subtitle", widget: "string" }
+          - { label: "عنوان رابط PDF المجلس", name: "board_pdf_title", widget: "string" }
+          - { label: "وصف رابط PDF المجلس", name: "board_pdf_desc", widget: "string" }
+          - { label: "ملف مجلس الإدارة PDF", name: "board_pdf_file", widget: "file" }
+
+          # REPORT PDF
+          - { label: "عنوان التقارير", name: "reports_section_title", widget: "string" }
+          - { label: "وصف التقارير", name: "reports_section_subtitle", widget: "string" }
+          - { label: "عنوان رابط التقرير", name: "report_pdf_title", widget: "string" }
+          - { label: "وصف رابط التقرير", name: "report_pdf_desc", widget: "string" }
+          - { label: "ملف التقرير PDF", name: "report_pdf_file", widget: "file" }
+
+          # CONTACT + SOCIAL
+          - { label: "عنوان تواصل معنا", name: "contact_section_title", widget: "string" }
+          - { label: "وصف تواصل معنا", name: "contact_section_subtitle", widget: "text" }
+          - { label: "البريد", name: "contact_email", widget: "string" }
+          - { label: "الهاتف/واتساب", name: "contact_phone", widget: "string" }
+          - { label: "العنوان", name: "contact_address", widget: "string" }
+          - { label: "الآيبان", name: "contact_iban", widget: "string" }
+          - { label: "رابط واتساب في السوشال", name: "social_whatsapp", widget: "string" }
+          - { label: "رابط سناب", name: "social_snapchat", widget: "string" }
+          - { label: "رابط يوتيوب", name: "social_youtube", widget: "string" }
+          - { label: "رابط انستغرام", name: "social_instagram", widget: "string" }
+          - { label: "رابط X", name: "social_x", widget: "string" }
+
+          # FOOTER
+          - { label: "نص الترخيص في الفوتر", name: "footer_license", widget: "string" }
